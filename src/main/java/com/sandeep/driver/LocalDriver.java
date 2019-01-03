@@ -30,6 +30,7 @@ class LocalDriver extends Driver {
         sslError.setAcceptInsecureCerts(true);*/
 
         if (driver == null) {
+            log.info(String.format("setting up %s browser", browser));
             if(browser.contains("chrome")) {
                 WebDriverManager.chromedriver().setup();
                 ChromeOptions options = new ChromeOptions();
@@ -41,7 +42,7 @@ class LocalDriver extends Driver {
                 FirefoxOptions options = new FirefoxOptions();
                 //options.merge(sslError);
                 driver = new FirefoxDriver(options);
-            } else if(System.getProperty("os.name").indexOf("win")==0 && (browser.contains("iexplore") || browser.contains("internet"))) {
+            } else if(System.getProperty("os.name").toLowerCase().indexOf("win")==0 && (browser.contains("iexplore") || browser.contains("internet"))) {
                 WebDriverManager.iedriver().setup();
                 InternetExplorerOptions options = new InternetExplorerOptions();
                 //options.merge(sslError);
